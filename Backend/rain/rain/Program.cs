@@ -38,10 +38,23 @@ builder.Services.AddDbContext<RainContext>(options => options.UseSqlServer(conne
 
 builder.Services.AddScoped<IRain, RainRepository>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000") 
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
+});
+
 var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+
+app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
 
