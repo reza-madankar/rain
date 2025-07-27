@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using rain.Context.Model;
-using rain.Model;
+using Rain.Model;
+using Rain.Context.Model;
 
-namespace rain.Context
+namespace Rain.Context
 {
     public class RainContext : DbContext
     {

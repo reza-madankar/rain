@@ -1,10 +1,10 @@
-﻿using rain.Context.Model;
+﻿using Rain.Context.Model;
 
-namespace rain.Model
+namespace Rain.Model
 {
     public class RainListDto : Message
     {
-        public IEnumerable<RainEntity> Rain { get; set; } = new List<RainEntity>();
+        public IEnumerable<RainExportDto> Rain { get; set; } = new List<RainExportDto>();
 
         public int CurrentPage { get; set; }
         public int TotalRecords { get; set; }

@@ -1,4 +1,4 @@
-﻿namespace rain.Model
+﻿namespace Rain.Model
 {
     public class Message
     {

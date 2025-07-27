@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using rain.Context.Model;
-using rain.Context.Services;
-using rain.Model;
+using Rain.Model;
+using Rain.Context;
+using Rain.Context.Model;
+using Rain.Context.Services;
 
-namespace rain.Context.Repository
+namespace Rain.Context.Repository
 {
     public class RainRepository : IRain
     {
@@ -29,17 +30,15 @@ namespace rain.Context.Repository
 
             var totalRecords = await query.CountAsync();
 
-            var projectedQuery = query.Select(r => new RainEntity
-            {
-                Timestamp = r.Timestamp,
-                Rain = r.Rain,
-                UserId = r.UserId
-            });
-
-            var result = await projectedQuery
+            var result = await query
                 .OrderByDescending(r => r.Timestamp)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
+                .Select(r => new RainExportDto
+                {
+                    Timestamp = r.Timestamp,
+                    Rain = r.Rain
+                })
                 .ToListAsync();
 
 

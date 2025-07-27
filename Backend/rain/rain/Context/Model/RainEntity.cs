@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace rain.Context.Model
+namespace Rain.Context.Model
 {
     public class RainEntity
     {

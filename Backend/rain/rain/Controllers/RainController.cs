@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using rain.Context.Repository;
-using rain.Context.Services;
-using rain.Helper.Attributes;
-using rain.Model;
+using Rain.Helper.Attributes;
+using Rain.Model;
+using Rain.Context.Services;
 
-namespace rain.Controllers
+namespace Rain.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
@@ -19,10 +18,12 @@ namespace rain.Controllers
         }
 
         [HttpGet]
+        [RequireUserId]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetRains(bool? isRain = null, string userId = "", int page = 1)
+        public async Task<IActionResult> GetRains(bool? isRain = null, int page = 1)
         {
+            var userId = HttpContext.Items["UserId"]?.ToString();
 
             var dto = await _rainServices.GetRains(isRain, userId, page);
             dto.IsSuccess = true;

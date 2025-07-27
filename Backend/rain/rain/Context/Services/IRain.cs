@@ -1,7 +1,7 @@
-﻿using rain.Context.Model;
-using rain.Model;
+﻿using Rain.Context.Model;
+using Rain.Model;
 
-namespace rain.Context.Services
+namespace Rain.Context.Services
 {
     public interface IRain
     {

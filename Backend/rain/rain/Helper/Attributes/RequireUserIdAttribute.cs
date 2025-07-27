@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Primitives;
-using rain.Model;
+using Rain.Model;
 
-namespace rain.Helper.Attributes
+namespace Rain.Helper.Attributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class RequireUserIdAttribute : ActionFilterAttribute
