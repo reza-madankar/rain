@@ -4,7 +4,6 @@ import useUserStore from '../store/userStore';
 
 const instance = axios.create({
     baseURL: config.get("BASE_API_URL"),
-    withCredentials: true,
     timeout: 10000,
     headers: {
       "Content-Type": "application/json",

@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  frontend:
+    image: rain-frontend
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"
+    environment:
+      - REACT_APP_API_URL=http://backend:8080/api/v1
+    depends_on:
+      - backend
+    networks:
+      - rain-net
+
+  backend:
+    image: rain-backend
+    build:
+      context: ./backend/rain
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - rain-net
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "Madank@r!23456"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - rain-data:/var/opt/mssql
+    networks:
+      - rain-net
+
+networks:
+  rain-net:
+
+volumes:
+  rain-data:
