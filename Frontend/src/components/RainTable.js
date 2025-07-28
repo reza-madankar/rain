@@ -50,7 +50,7 @@ console.log(userId)
         page: currentPage,
         isRain: isRainParam
       };
-      const response = await axios.get('/rain', { params });
+      const response = await axios.get('/data', { params });
       return response.data;
     },
     staleTime: 30000,

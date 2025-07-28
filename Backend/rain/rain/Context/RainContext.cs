@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Rain.Model;
 using Rain.Context.Model;
+using System.Reflection.Emit;
 
 namespace Rain.Context
 {
@@ -10,8 +11,9 @@ namespace Rain.Context
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<RainEntity>().HasIndex(r => r.UserId);
         }
 
         public DbSet<RainEntity> RainEntities { get; set; }

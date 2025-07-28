@@ -21,7 +21,7 @@ const AddRainModal = ({ visible, onCancel, onSuccess }) => {
 
   const addRainMutation = useMutation({
     mutationFn: async (data) => {
-      const response = await axios.post('/rain', { rain: data.rain });
+      const response = await axios.post('/data', { rain: data.rain });
       return response.data;
     },
     onSuccess: (data) => {

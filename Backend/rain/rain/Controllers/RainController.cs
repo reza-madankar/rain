@@ -7,7 +7,7 @@ namespace Rain.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/[controller]")]
+    [Route("api/v{version:apiVersion}/data")]
     public class RainController : Controller
     {
         private readonly IRain _rainServices;
@@ -41,26 +41,22 @@ namespace Rain.Controllers
         {
             if (input == null || input.Rain == null)
             {
-                var message = new Message
+                return BadRequest(new Message
                 {
                     IsSuccess = false,
                     Description = "Please include a valid 'rain' value (true or false) in your request."
-                };
-
-                return StatusCode(400, message);
+                });
             }
 
             var userId = HttpContext.Items["UserId"]?.ToString();
             var success = await _rainServices.AddRain(input.Rain.Value, userId);
             if (success)
             {
-                var message = new Message
+                return Created(string.Empty, new Message
                 {
                     IsSuccess = true,
                     Description = "Rain data has been successfully recorded for you."
-                };
-
-                return StatusCode(201, message);
+                });
             }
 
             var errorMessage = new Message
